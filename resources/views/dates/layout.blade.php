@@ -11,13 +11,14 @@
 
 <body>
   <div class="container">
-   
+
 
     @yield('content')
   </div>
 
+
+
 </body>
-@jquery
-@toastr_js
-@toastr_render
+
+
 </html>

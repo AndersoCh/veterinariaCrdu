@@ -5,7 +5,7 @@
   <div class="card-header">Página Citas</div>
   <div class="card-body">
 
-    <form action="{{ url('date') }}" method="post">
+    <form id="form-agregar" action="{{ url('date') }}" method="post">
       {!! csrf_field() !!}
       @csrf
       <label>Cedula </label></br>
@@ -19,9 +19,9 @@
 
       <label>Nombre Mascota</label></br>
       <input type="text" name="nombre_mascota" id="nombre_mascota" class="form-control"></br>
-    
+
       <label>Fecha cita</label></br>
-      <input type="date" name="fecha_cita" id="fecha_cita" class="form-control" min="<?= date('Y-m-d'); ?>" ></br>
+      <input type="date" name="fecha_cita" id="fecha_cita" class="form-control" min="<?= date('Y-m-d'); ?>"></br>
 
       <label>Hora cita</label></br>
       <input type="time" name="hora_cita" id="hora_cita" class="form-control"></br>
@@ -31,5 +31,4 @@
 
   </div>
 </div>
-
 @stop

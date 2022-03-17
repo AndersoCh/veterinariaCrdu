@@ -12,7 +12,7 @@ class DateController extends Controller
 
     public function index()
     {
-          $dates = Date::paginate(3);
+        $dates = Date::paginate(3);
         return view('dates.index')->with('dates', $dates);
         
     }
@@ -20,7 +20,7 @@ class DateController extends Controller
 
     public function create()
     {
-        return view('dates.create')->with('success','Item created successfully!');
+        return view('dates.create')->with('success','Cita creada correctamente!');
     }
 
 
@@ -29,18 +29,16 @@ class DateController extends Controller
 
         $fecha_cita = $request->fecha_cita;
         $hora_cita = $request->hora_cita;
-        $yesterday = date("Y-m-d", strtotime( '-1 days' ));
-        $yesterday;
         $check = Date::where([
             ['fecha_cita', '=', $fecha_cita]
         ])->where('hora_cita', '=', $hora_cita)->first();
 
         if ($check) {            
-            return redirect('date/create');
+            return redirect('date/create')->with('error', 'Fecha invalida Creada!');
         }else{
             $input = $request->all();
             Date::create($input);
-            return redirect('date')->with('alert', 'Date Addedd!');
+            return redirect('date')->with('success', 'Cita Creada!');
         }
 
     }
@@ -80,17 +78,14 @@ class DateController extends Controller
         $date = Date::find($id);
         $input = $request->all();
         $date->update($input);
-        return redirect('date')->with('flash_message', 'date Updated!');
+        return redirect('date')->with('success', 'Cita Actualizada Correctamente!');
     }
 
 
     public function destroy($id)
     {
         Date::destroy($id);
-        return redirect('date')->with('flash_message', 'date deleted!');
+        return redirect('date')->with('success', 'Cita Eliminada correctamente!');
     }
-
-    public static $rules = [
-        'email' => 'required|unique:users,email'
-    ];
+   
 }
