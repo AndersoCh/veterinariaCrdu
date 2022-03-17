@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Date;
 use Illuminate\Http\Request;
-use League\CommonMark\Extension\Table\Table;
-use Response;
+use App\Http\Controllers\toastr;
 
 
 class DateController extends Controller
@@ -13,32 +12,37 @@ class DateController extends Controller
 
     public function index()
     {
-        $dates = Date::all();
+          $dates = Date::paginate(3);
         return view('dates.index')->with('dates', $dates);
+        
     }
 
 
     public function create()
     {
-        return view('dates.create');
+        return view('dates.create')->with('success','Item created successfully!');
     }
 
 
     public function store(Request $request)
     {
 
-          $input = $request->all();
-        //Date::create($input);
+        $fecha_cita = $request->fecha_cita;
+        $hora_cita = $request->hora_cita;
+        $yesterday = date("Y-m-d", strtotime( '-1 days' ));
+        $yesterday;
+        $check = Date::where([
+            ['fecha_cita', '=', $fecha_cita]
+        ])->where('hora_cita', '=', $hora_cita)->first();
 
-        $checker = Date::where('fecha_cita', $request->itemid)->exists();
-
-        if ($checker) {
+        if ($check) {            
+            return redirect('date/create');
+        }else{
+            $input = $request->all();
             Date::create($input);
-            echo "Has data";
-        } else {
-            echo "None data";
+            return redirect('date')->with('alert', 'Date Addedd!');
         }
-        return redirect('date')->with('flash_message', 'Date Addedd!');
+
     }
 
 
@@ -57,7 +61,7 @@ class DateController extends Controller
         } else {
             $dates = Date::all();
         }
-        $data = compact('dates');
+        $data = compact('dates','search');
         return view('dates\index')->with($data);
     }
 
@@ -85,4 +89,8 @@ class DateController extends Controller
         Date::destroy($id);
         return redirect('date')->with('flash_message', 'date deleted!');
     }
+
+    public static $rules = [
+        'email' => 'required|unique:users,email'
+    ];
 }
