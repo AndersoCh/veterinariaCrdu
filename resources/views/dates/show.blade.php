@@ -1,9 +1,7 @@
 @extends('dates.layout')
 @section('content')
-
-
 <div class="card">
-  <div class="card-header">Página Citas</div>
+  <div class="card-header">Vista  Citas</div>
   <div class="card-body">
 
 
@@ -36,12 +34,3 @@
 </div>
 <p class="card-text">Hora Actual : {{ $horaActual}}</p>
 
-<script>
-    Swal.fire({
-      position: 'top-end',
-      icon: 'success',
-      title: 'Your work has been saved',
-      showConfirmButton: false,
-      timer: 1500
-    })
-  </script>

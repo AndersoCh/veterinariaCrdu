@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="card">
-  <div class="card-header">Página Citas</div>
+  <div class="card-header">Agregar</div>
   <div class="card-body">
 
     <form id="form-agregar" action="{{ url('date') }}" method="post">

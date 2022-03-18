@@ -1,16 +1,16 @@
 @extends('dates.layout')
 @section('content')
+
 <div class="container">
 
-
-
     <div class="row">
-        {{-- Alert Message --}}
         @include('dates.alert')
-        <div class="col-md-9">
+        <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Contacts</div>
+                <div class="card-header">Citas</div>
+                
                 <div class="card-body">
+                {{-- Alert Message --}}
                     <a href="{{ url('/date/create') }}" class="btn btn-success btn-sm" title="Add New Date">
                         <i class="fa fa-plus" aria-hidden="true"></i> Agregar Nueva Cita
                     </a>
@@ -78,7 +78,7 @@
                                             <form method="POST" action="{{ url('/date' . '/' . $date->id) }}" accept-charset="UTF-8" style="display:inline">
                                                 {{ method_field('DELETE') }}
                                                 {{ csrf_field() }}
-                                                <button type="submit" class="btn btn-danger btn-sm" title="Delete Contact" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i>Cancelar</button>
+                                                <button type="submit" class="btn btn-danger btn-sm" title="Delete Contact" onclick="return (&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i>Cancelar</button>
                                             </form>
                                             @endif
                                             <a href="{{ url('/date/' . $date->id) }}" title="View Student"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> Ver</button></a>
@@ -94,7 +94,5 @@
         </div>
     </div>
 </div>
-
-
 
 @endsection
