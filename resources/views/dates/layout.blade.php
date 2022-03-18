@@ -10,19 +10,15 @@
 </head>
 
 <body>
-  
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="{{ url('/date')}}">Citas</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <a class="navbar-brand" href="{{ url('/date/create')}}">crear</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-</nav>
 
-  
+  <div class="d-flex flex-column flex-md-row align-items-right p-3 px-md-4 mb-3 bg-white border-bottom box-shadow navbar ">
+    <h5 class="my-0 mr-md-auto font-weight-normal">Veterinaria </h5>
+    <nav class="my-2 my-md-0 mr-md-3 navbar-dark navbar-light bg-light">
+      <a class="p-2 text-dark" href="{{ url('/date') }}">Citas</a>
+      <a class="p-2 text-dark" href="{{ url('/date/create') }}">Nueva cita</a>
+    </nav>
+  </div>
+
   <div class="container">
     @yield('content')
   </div>
